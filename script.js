@@ -133,18 +133,32 @@ if (orderForm) {
     if (field('observacoes')) linhas.push(`*Observações:* ${field('observacoes')}`);
     linhas.push('', 'Aguardo as orientações de pagamento para concluir a compra.');
     const url = `https://wa.me/5563999777599?text=${encodeURIComponent(linhas.join('\n'))}`;
-    window.open(url, '_blank', 'noopener');
-    const paymentStep = document.getElementById('asaas-payment-step');
-    const payLink = document.getElementById('asaas-payment-link');
-    if (paymentStep && payLink) {
-      const oneBook = Number(field('quantidade')) === 1;
-      paymentStep.hidden = false;
-      payLink.hidden = !oneBook;
-      payLink.style.display = oneBook ? 'inline-flex' : 'none';
-      paymentStep.querySelector('p').textContent = oneBook
-        ? 'Depois de enviar os dados de entrega pelo WhatsApp, conclua o pagamento de 1 exemplar (R$ 50,00) pelo Asaas. O pedido só estará confirmado após a verificação do pagamento.'
-        : 'Para mais de 1 exemplar, não utilize o link fixo de R$ 50,00. Solicite pelo WhatsApp um link com o valor total correto.';
-      paymentStep.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    const whatsappTab = window.open(url, '_blank');
+    const feedback = document.getElementById('order-flow-feedback');
+    const fallback = document.getElementById('order-whatsapp-fallback');
+    const oneBook = Number(field('quantidade')) === 1;
+    if (!whatsappTab) {
+      if (feedback) {
+        feedback.hidden = false;
+        feedback.textContent = 'Seu navegador bloqueou a abertura do WhatsApp. Use o link abaixo para revisar e enviar os dados do pedido. O checkout não foi aberto.';
+      }
+      if (fallback) {
+        fallback.href = url;
+        fallback.hidden = false;
+        fallback.style.display = 'inline-flex';
+      }
+      return;
     }
+    whatsappTab.opener = null;
+    if (!oneBook) {
+      if (feedback) {
+        feedback.hidden = false;
+        feedback.textContent = 'Para mais de 1 exemplar, confirme o envio da mensagem no WhatsApp e solicite um link com o total correto. Não utilize o pagamento fixo de R$ 50,00.';
+      }
+      return;
+    }
+    // O pagamento é aberto na aba atual; o WhatsApp fica em outra aba.
+    // O usuário ainda precisa confirmar o envio da mensagem no WhatsApp.
+    window.location.assign('https://www.asaas.com/000/c/0u3uabtwnhjn4twj');
   });
 }

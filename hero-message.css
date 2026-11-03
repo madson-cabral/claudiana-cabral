@@ -1,0 +1,9 @@
+/* Hero — nova mensagem em HTML editável, mantendo a fotografia e demais seções. */
+.portrait-hero{container-type:inline-size}
+.hero-message{position:absolute;z-index:2;left:8.4%;top:12.3%;width:39.2%;color:#493329;text-align:left;font-family:'DM Sans',Arial,sans-serif;line-height:1.34;pointer-events:none}
+.hero-message h1{font-family:'DM Sans',Arial,sans-serif;font-weight:500;font-size:3.23cqw;line-height:1.22;letter-spacing:-.022em;margin:0 0 1.55cqw}
+.hero-message h1 span{display:block;color:#a06b44;font-weight:700}
+.hero-message .hero-promise{font-size:2.73cqw;line-height:1.31;margin:0 0 1.5cqw;font-weight:500}
+.hero-message .hero-promise strong{font-weight:700;color:#a46c44}
+.hero-message .hero-description{font-size:2.38cqw;line-height:1.32;margin:0;font-weight:400}
+@media (max-width:340px){.hero-message{top:12%;width:40%}.hero-message .hero-description{font-size:2.3cqw}}

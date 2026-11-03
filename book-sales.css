@@ -1,0 +1,40 @@
+/* Nova seção de venda do livro Mulher Ensinável */
+.portrait-book-secondary{background:#f3e6d8;padding-top:34px}
+.book-sale-card{position:relative}
+.book-sale-meta{display:flex;flex-direction:column;gap:5px;margin:10px 0 4px}
+.sale-highlight{display:inline-flex;align-items:center;gap:8px;width:max-content;padding:6px 10px;border-radius:999px;background:#e8c49b;color:#3b281e;font:700 10px/1.2 "DM Sans",Arial,sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.sale-note{color:#e2bc8e;font-size:9px}
+.book-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.book-buy-trigger{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:9px 14px;border:1px solid #e8c49b;border-radius:999px;background:#e8c49b;color:#342219;font:700 11px/1.35 "DM Sans",Arial,sans-serif;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
+.book-buy-trigger:hover,.book-buy-trigger:focus-visible{background:#f3d7b3;box-shadow:0 8px 20px rgba(0,0,0,.18);transform:translateY(-1px)}
+.order-dialog{box-sizing:border-box;width:min(700px,calc(100% - 28px));max-height:min(88dvh,900px);margin:auto;padding:0;border:1px solid #c9aa8f;border-radius:18px;background:#fbf3e9;color:#38281f;box-shadow:0 30px 90px #25150fcc;overscroll-behavior:contain}
+.order-dialog::backdrop{background:rgba(29,17,13,.76);backdrop-filter:blur(4px)}
+.order-dialog-inner{padding:clamp(22px,5vw,42px)}
+.order-dialog h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(24px,5vw,34px);font-weight:500;line-height:1.18;margin:12px 0 18px}
+.order-dialog h2 em{color:#8d5d40;font-weight:500}
+.order-dialog-intro{font:400 14px/1.75 "DM Sans",Arial,sans-serif;margin:0 0 20px;color:#483125}
+.order-form{display:flex;flex-direction:column;gap:14px}
+.order-form label{display:flex;flex-direction:column;gap:8px}
+.order-form span{font:700 11px/1.2 "DM Sans",Arial,sans-serif;color:#8a5a3e;letter-spacing:.08em;text-transform:uppercase}
+.order-form input,.order-form textarea{width:100%;box-sizing:border-box;border:1px solid #cfb49b;border-radius:14px;background:#fffaf5;color:#38281f;padding:13px 14px;font:400 14px/1.4 "DM Sans",Arial,sans-serif}
+.order-form input:focus,.order-form textarea:focus{outline:3px solid #e7c39a;outline-offset:1px;border-color:#b78660}
+.order-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.order-form-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end;margin-top:6px}
+.order-cancel{background:#7b5b46;color:#fff6ee}
+.order-submit{padding:12px 20px;border:0;border-radius:24px;background:#493125;color:#f9eee2;font:700 12px "DM Sans",Arial,sans-serif;cursor:pointer}
+.order-submit:hover,.order-submit:focus-visible{background:#2f2018}
+@media(max-width:480px){.book-actions{gap:8px}.book-buy-trigger,.portrait-book-card .book-synopsis-trigger{font-size:10px;padding:8px 10px}.order-dialog{width:calc(100% - 18px);max-height:90dvh;border-radius:14px}.order-dialog-intro{font-size:13px;line-height:1.7}.order-form-grid{grid-template-columns:1fr}.order-form-actions{justify-content:stretch}.order-form-actions button{flex:1 1 100%}}
+@media(prefers-reduced-motion:reduce){.book-buy-trigger{transition:none}}
+
+/* Campos individualizados de endereço e identificação */
+.order-form-heading{font:500 19px/1.3 "Playfair Display",Georgia,serif;color:#483125;margin:8px 0 0;padding-bottom:8px;border-bottom:1px solid #d8c2ac}
+.order-form label small{font:400 11px/1.4 "DM Sans",Arial,sans-serif;color:#755e4e}
+.order-form .order-consent{display:flex;flex-direction:row;align-items:flex-start;gap:10px;padding:12px;border:1px solid #d8c2ac;border-radius:12px;background:#f4e7da}
+.order-form .order-consent input{width:18px;height:18px;flex:0 0 18px;margin:1px 0 0;accent-color:#493125}
+.order-form .order-consent span{color:#483125;letter-spacing:0;text-transform:none;font-weight:500;font-size:12px;line-height:1.6}
+.order-privacy-notice{font:400 12px/1.6 "DM Sans",Arial,sans-serif;color:#684c3d;margin:4px 0 0}
+.order-form-required{font:400 11px/1.5 "DM Sans",Arial,sans-serif;color:#765949;margin:0}
+
+.order-dialog{overflow:hidden;}
+.order-dialog-inner{box-sizing:border-box;max-height:calc(100dvh - 72px);overflow:auto;}
+@media(max-width:480px){.order-dialog-inner{max-height:calc(100dvh - 52px);padding:20px 16px 18px;}}

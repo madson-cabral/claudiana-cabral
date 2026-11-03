@@ -1,0 +1,68 @@
+/* Direção inspirada na referência editorial fornecida: superfícies amplas, cards fotográficos e cantos suaves. */
+body{background:#f5eee6;}
+.site-header{padding:24px clamp(24px,5vw,76px);}
+.brand{font-size:24px;}
+.hero{gap:clamp(34px,6vw,92px);grid-template-columns:minmax(0,1fr) minmax(340px,500px);padding-left:clamp(24px,7vw,110px);padding-right:clamp(24px,7vw,110px);}
+.hero-portrait,.portrait-frame,.about-image,.book-stage,.path-card,.booking-panel{border-radius:22px;}
+.portrait-frame{border-radius:22px;box-shadow:0 22px 48px #49312620;}
+.portrait-caption{border-radius:0 0 18px 18px;bottom:0;right:0;width:100%;}
+.path-grid{gap:16px;grid-template-columns:repeat(3,1fr);}
+.path-card{background-position:center;background-size:cover;min-height:280px;overflow:hidden;padding:28px;}
+.path-card:nth-child(1){background-image:linear-gradient(180deg,#2c211b18 12%,#2c211bd9 100%),url('./assets/claudiana.jpg');}
+.path-card:nth-child(2){background-image:linear-gradient(180deg,#2c211b10 12%,#2c211bcf 100%),url('./assets/claudiana-sobre-clara.jpeg');}
+.path-card:nth-child(3){background-image:linear-gradient(180deg,#2c211b14 12%,#2c211bd6 100%),url('./assets/livro-31-dias-de-jornada.png');}
+.path-card,.path-card-featured{color:var(--white);}
+.path-card:hover,.path-card-featured:hover{background-color:var(--brown);background-blend-mode:soft-light;transform:translateY(-5px);}
+.path-card h3{font-size:32px;margin-top:68px;}
+.path-card p{color:var(--white);opacity:.82;}
+.card-index,.card-link{color:var(--white);}
+.about{border-radius:0;grid-template-columns:minmax(280px,430px) 1fr;}
+.about-image{box-shadow:0 18px 42px #00000020;}
+.book-stage{box-shadow:0 18px 36px #49312612;}
+.book-copy blockquote{font-size:22px;}
+.faq-list{max-width:none;}
+.faq-list details{border-color:#2c211b42;}
+.faq-list summary{font-size:25px;}
+.proof-strip{background:var(--brown);color:var(--white);display:grid;grid-template-columns:repeat(3,1fr);padding:54px clamp(24px,8vw,128px);}
+.proof-strip div{align-items:center;border-right:1px solid #dccbb84d;display:flex;gap:18px;justify-content:center;padding:0 24px;}
+.proof-strip div:last-child{border:0;}
+.proof-strip strong{color:var(--gold);font-family:var(--serif);font-size:48px;font-weight:500;line-height:1;}
+.proof-strip span{color:var(--sand);font-size:11px;letter-spacing:.08em;line-height:1.35;text-transform:uppercase;}
+.site-footer{padding-top:76px;}
+@media (max-width:800px){
+  .site-header{padding:18px 20px;}
+  .brand{font-size:21px;}
+  .hero{gap:0;padding-left:20px;padding-right:20px;}
+  .hero-portrait,.portrait-frame{border-radius:18px;}
+  .portrait-caption{border-radius:0 0 16px 16px;font-size:17px;padding:18px 20px;}
+  .section-light,.section-dark{padding-left:20px;padding-right:20px;}
+  .path-grid{display:grid;gap:12px;grid-template-columns:1fr;margin-top:38px;}
+  .path-card{min-height:188px;}
+  .path-card h3{font-size:28px;margin-top:30px;}
+  .book-stage{border-radius:18px;padding:30px 20px;}
+  .about-image{border-radius:18px;}
+  .proof-strip{grid-template-columns:1fr;padding:30px 20px;}
+  .proof-strip div{border-bottom:1px solid #dccbb84d;border-right:0;justify-content:flex-start;padding:18px 0;}
+  .proof-strip div:last-child{border-bottom:0;}
+  .proof-strip strong{font-size:38px;width:48px;}
+}
+.hero-actions{display:none;}
+.bio-actions{display:block;max-width:520px;margin-top:34px;}
+.bio-actions a{align-items:center;background:#6a4b39;border:1px solid #b88a4a4d;border-radius:17px;box-shadow:0 8px 18px #49312618;color:var(--white);display:flex;font-family:var(--serif);font-size:21px;font-weight:500;justify-content:space-between;margin-top:11px;min-height:76px;overflow:hidden;padding:12px 18px 12px 13px;position:relative;transition:transform .2s ease,box-shadow .2s ease;}
+.bio-actions a:nth-child(1){background:linear-gradient(90deg,#5b3c2bde,#5b3c2b86),url('./assets/claudiana.jpg') center 28%/cover;}
+.bio-actions a:nth-child(2){background:linear-gradient(90deg,#5b3c2bde,#5b3c2b86),url('./assets/livro-31-dias-de-jornada.png') center/cover;}
+.bio-actions a:nth-child(3){background:linear-gradient(90deg,#5b3c2bde,#5b3c2b86),url('./assets/claudiana-sobre-clara.jpeg') center 35%/cover;}
+.bio-actions a:hover{box-shadow:0 12px 22px #4931262b;transform:translateY(-3px);}
+.bio-actions a span{align-items:center;background:#f6eadc;color:#6a4b39;display:flex;font-family:var(--sans);font-size:17px;height:50px;justify-content:center;margin:0 16px 0 0;width:50px;}
+.bio-actions a b{align-items:center;border:1px solid #f6eadc;border-radius:50%;display:flex;font-family:var(--sans);font-size:17px;font-weight:400;height:30px;justify-content:center;width:30px;}
+.hero-note{margin-top:28px;}
+.proof-strip{background:#eadac9;color:var(--brown);}
+.proof-strip span,.proof-strip strong{color:var(--brown);}
+.section-light{background:#f5eee6;}
+.books{background:#f0e4d7;}
+.book-stage{background:#6a4b39;color:var(--white);}
+.book-copy p:not(.book-status),.book-copy .book-audience{color:#f4dfca;opacity:.9;}
+.book-audience strong{color:var(--white);}
+.book-pending{color:#f3c795;}
+.faq{background:#f5eee6;}
+@media (max-width:800px){.hero-actions{display:none;}.bio-actions{margin-top:28px;}.bio-actions a{font-size:19px;min-height:68px;}}

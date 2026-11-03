@@ -109,6 +109,8 @@ if (orderForm) {
     const linhas = [
       'Olá! Quero fazer um pedido do livro *Mulher Ensinável*.',
       '',
+      '*Preço unitário:* R$ 50,00',
+      `*Total (${field('quantidade')} unidade(s)):* ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(field('quantidade')) * 50)}`,
       '*Promoção:* frete grátis',
       '*Dados da compradora*',
       `*Nome:* ${field('nome')}`,
@@ -129,7 +131,7 @@ if (orderForm) {
     if (field('referencia')) linhas.push(`*Referência:* ${field('referencia')}`);
     linhas.push('', `*Quantidade:* ${field('quantidade')}`);
     if (field('observacoes')) linhas.push(`*Observações:* ${field('observacoes')}`);
-    linhas.push('', 'Aguardo confirmação do valor e as orientações de pagamento para concluir a compra.');
+    linhas.push('', 'Aguardo as orientações de pagamento para concluir a compra.');
     const url = `https://wa.me/5563999777599?text=${encodeURIComponent(linhas.join('\n'))}`;
     window.open(url, '_blank', 'noopener');
   });

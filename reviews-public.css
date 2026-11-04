@@ -1,1 +1,89 @@
-.cc-reviews-section{padding:85px 24px;background:#f7efe7;color:#4a3025;font-family:'DM Sans',Arial,sans-serif}.cc-reviews-inner{max-width:1120px;margin:auto}.cc-reviews-heading{text-align:center;max-width:750px;margin:0 auto 38px}.cc-reviews-eyebrow{font-size:11px;font-weight:700;color:#9e745c;letter-spacing:.19em}.cc-reviews-heading h2{margin:14px 0 10px;font:500 clamp(33px,5vw,55px)/1.2 'Playfair Display',Georgia,serif}.cc-reviews-heading h2 em{color:#a67b61}.cc-reviews-heading>p{color:#876f61;line-height:1.7}.cc-reviews-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}.cc-reviews-form-panel,.cc-reviews-approved-panel{padding:34px;border:1px solid #e4ccba;border-radius:23px;background:#fffaf5;box-shadow:0 12px 38px #533a2410}.cc-reviews-columns h3{font:500 26px/1.3 'Playfair Display',Georgia,serif;margin:0 0 24px}.cc-review-rating{border:0;padding:0;margin:0 0 20px}.cc-review-rating legend{font-weight:600;font-size:14px;margin-bottom:12px}.cc-review-stars{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:2px}.cc-review-stars label{position:relative;cursor:pointer;color:#d4c4b4;font:normal 39px/1 Arial,sans-serif}.cc-review-stars input{position:absolute;width:100%;height:100%;opacity:0;cursor:pointer}.cc-review-stars label:has(input:checked),.cc-review-stars label:has(input:checked)~label,.cc-review-stars label:hover,.cc-review-stars label:hover~label{color:#bc8b4b}.cc-review-stars label:has(input:focus-visible){outline:2px solid #8c5c41;outline-offset:3px}.cc-review-sr{position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;overflow:hidden}.cc-review-field{display:block;font-size:14px;font-weight:600;margin-bottom:16px}.cc-review-field small{color:#927a68;font-weight:400}.cc-review-field input,.cc-review-field textarea{display:block;box-sizing:border-box;width:100%;margin-top:9px;padding:13px 15px;border:1px solid #d8bba6;border-radius:12px;background:#fff;color:#483329;font:14px/1.5 'DM Sans',Arial,sans-serif;resize:vertical}.cc-review-submit{display:block;width:100%;margin-top:16px;background:#4a3025;color:white;border:none;border-radius:30px;padding:15px 20px;font:700 14px 'DM Sans',Arial,sans-serif;cursor:pointer}.cc-review-submit:disabled{opacity:.6;cursor:wait}.cc-review-notice{font-size:12px;line-height:1.6;color:#907a6d;margin-top:14px}.cc-reviews-approved-heading{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}.cc-reviews-approved-heading span{font-size:11px;color:#907a6d}.cc-review-card{border-top:1px solid #eadbd1;padding:21px 0}.cc-review-card:first-child{border-top:0;padding-top:0}.cc-review-card .cc-rating{color:#b67a34;letter-spacing:2px;font-size:18px}.cc-review-card p{line-height:1.7;margin:10px 0;white-space:pre-wrap;overflow-wrap:anywhere;color:#604d41}.cc-review-card small{color:#957d6d}.cc-reviews-empty{color:#907a6d;line-height:1.7}@media(max-width:750px){.cc-reviews-section{padding:55px 15px}.cc-reviews-columns{grid-template-columns:1fr}.cc-reviews-form-panel,.cc-reviews-approved-panel{padding:25px 21px}}
+/* Avaliações — composição editorial para o bio site de largura fixa (420px). */
+.cc-reviews-section{
+  box-sizing:border-box;
+  width:100%;
+  max-width:100%;
+  padding:44px 22px 48px;
+  background:#f3e7db;
+  color:#4a3025;
+  font-family:'DM Sans',Arial,sans-serif;
+}
+.cc-reviews-section *, .cc-reviews-section *::before, .cc-reviews-section *::after{box-sizing:border-box}
+.cc-reviews-inner{width:100%;max-width:100%;min-width:0;margin:0 auto}
+.cc-reviews-heading{text-align:left;margin:0 0 28px;max-width:100%}
+.cc-reviews-eyebrow{font:700 9px/1.5 'DM Sans',Arial,sans-serif;letter-spacing:.17em;color:#9a735a}
+.cc-reviews-heading h2{
+  margin:10px 0 10px;
+  font:500 clamp(31px,8vw,39px)/1.08 'Playfair Display',Georgia,serif;
+  letter-spacing:-.035em;
+  overflow-wrap:normal;
+}
+.cc-reviews-heading h2 em{color:#a27d62;font-weight:500}
+.cc-reviews-heading>p{margin:0;color:#856f61;font-size:12px;line-height:1.7}
+.cc-reviews-columns{
+  display:flex; flex-direction:column; gap:28px;
+  min-width:0;width:100%;
+  grid-template-columns:none;
+}
+.cc-reviews-form-panel,.cc-reviews-approved-panel{
+  min-width:0;width:100%;max-width:100%;
+  background:#fcf7f1;border:1px solid #e3cdbc;
+  border-radius:15px;padding:23px 19px 21px;
+  box-shadow:none;overflow:visible;
+}
+.cc-reviews-columns h3{
+  margin:0 0 19px;
+  font:500 23px/1.2 'Playfair Display',Georgia,serif;
+  letter-spacing:-.015em;
+}
+.cc-review-rating{border:0;margin:0 0 21px;padding:0;min-width:0}
+.cc-review-rating legend{margin-bottom:10px;font:600 12px/1.5 'DM Sans',Arial,sans-serif}
+.cc-review-stars{display:flex;flex-direction:row-reverse;justify-content:flex-end;align-items:center;gap:4px}
+.cc-review-stars label{
+  position:relative;display:inline-flex;
+  align-items:center;justify-content:center;
+  width:43px;height:43px;flex:0 0 43px;
+  color:#d7c8bb;font:normal 33px/1 Arial,sans-serif;cursor:pointer;
+}
+.cc-review-stars input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.cc-review-stars label:has(input:checked),
+.cc-review-stars label:has(input:checked)~label,
+.cc-review-stars label:hover,
+.cc-review-stars label:hover~label{color:#bc8b4b}
+.cc-review-stars label:has(input:focus-visible){outline:2px solid #8c5c41;outline-offset:2px;border-radius:6px}
+.cc-review-sr{position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;overflow:hidden}
+.cc-review-field{display:block;margin:0 0 18px;font:600 12px/1.5 'DM Sans',Arial,sans-serif}
+.cc-review-field small{color:#927a68;font-weight:400}
+.cc-review-field input,.cc-review-field textarea{
+  display:block;width:100%;max-width:100%;min-width:0;
+  padding:12px 13px;margin-top:8px;border:1px solid #dcc2ae;
+  border-radius:10px;background:#fffdfb;color:#4a3025;
+  font:400 13px/1.5 'DM Sans',Arial,sans-serif;resize:vertical;
+}
+.cc-review-field textarea{min-height:96px}
+#cc-review-turnstile{max-width:100%;min-height:65px;overflow:hidden}
+.cc-review-submit{
+  display:block;width:100%;margin-top:16px;padding:13px 18px;
+  background:#4a3025;color:#fff9f0;border:0;border-radius:24px;
+  font:700 12px/1.4 'DM Sans',Arial,sans-serif;cursor:pointer;
+}
+.cc-review-submit:disabled{opacity:.65;cursor:wait}
+.cc-review-notice{margin:14px 0 4px;font-size:11px;line-height:1.6;color:#8b7668}
+#cc-review-feedback{font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+.cc-reviews-approved-panel{background:transparent;box-shadow:none;padding:0;border:0;border-radius:0}
+.cc-reviews-approved-heading{display:block;padding:20px 0 13px;border-top:1px solid #d8bda6}
+.cc-reviews-approved-heading h3{margin:0 0 6px;font-size:23px}
+.cc-reviews-approved-heading span{font-size:10px;color:#927a68}
+.cc-review-card{padding:16px 0;border-top:1px solid #e1cbb9}
+.cc-review-card:first-child{border-top:0}
+.cc-review-card .cc-rating{color:#ae7c40;letter-spacing:2px;font-size:17px}
+.cc-review-card p{margin:8px 0;line-height:1.7;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}
+.cc-review-card small{color:#927a68;font-size:10px}
+.cc-reviews-empty{margin:8px 0 0;color:#927a68;font-size:12px;line-height:1.7}
+@media(max-width:360px){
+  .cc-reviews-section{padding:34px 17px 40px}
+  .cc-reviews-form-panel{padding:20px 15px}
+  .cc-review-stars{gap:0}
+  .cc-review-stars label{width:40px;height:42px;flex-basis:40px}
+}
+@media(prefers-reduced-motion:reduce){.cc-reviews-section *{scroll-behavior:auto}}

@@ -77,7 +77,7 @@ export async function updateUiclapStatus(request,query,actor) {
     WHERE id=$1::uuid AND status=$7 RETURNING id,status
   ), audit AS (
     INSERT INTO claudiana.uiclap_intent_events(intent_id,event_type,actor,details)
-    SELECT id,$2,$6,$8::jsonb FROM changed RETURNING id
+    SELECT id,$2,$6,$8::jsonb FROM changed RETURNING intent_id AS id
   ) SELECT changed.id,changed.status FROM changed JOIN audit USING(id)`,
     [id,next,reference,tracking,carrier,actor,current,JSON.stringify({previous:current,reference:reference||undefined})]);
   if (!result.rows.length)return json({error:'conflict_retry'},409);

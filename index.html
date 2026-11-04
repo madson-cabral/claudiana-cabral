@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="./synopsis.css" />
     <link rel="stylesheet" href="./book-sales.css" />
     <link rel="stylesheet" href="./hero-restored.css" />
-    <link rel="stylesheet" href="./reviews-public.css?v=20261104-editorial2" />
+    <link rel="stylesheet" href="./reviews-public.css?v=20261104-estrelas-obrigatorias" />
   </head>
   <body>
     <main class="portrait-site">
@@ -58,7 +58,7 @@
           <div class="cc-reviews-columns">
             <div class="cc-reviews-form-panel"><h3>Deixe sua avaliação</h3>
               <form id="cc-review-form">
-                <fieldset class="cc-review-rating"><legend>Sua nota *</legend><div class="cc-review-stars" role="radiogroup" aria-label="Escolha de 1 a 5 estrelas">
+                <fieldset class="cc-review-rating" aria-describedby="cc-review-rating-hint"><legend>Sua classificação <strong>* obrigatória</strong></legend><p id="cc-review-rating-hint" class="cc-review-rating-hint" role="status">Escolha sua nota antes de enviar.</p><div class="cc-review-stars" role="radiogroup" aria-label="Classificação obrigatória de 1 a 5 estrelas">
                   <label><input type="radio" name="rating" value="1" required><span aria-hidden="true">★</span><span class="cc-review-sr">1 estrela</span></label>
                   <label><input type="radio" name="rating" value="2"><span aria-hidden="true">★</span><span class="cc-review-sr">2 estrelas</span></label>
                   <label><input type="radio" name="rating" value="3"><span aria-hidden="true">★</span><span class="cc-review-sr">3 estrelas</span></label>
@@ -185,6 +185,6 @@
     </dialog>
 
     <script src="./script.js?v=20261104-botao-pagamento"></script>
-    <script src="./reviews-public.js?v=20261104" defer></script>
+    <script src="./reviews-public.js?v=20261104-estrelas-obrigatorias" defer></script>
   </body>
 </html>

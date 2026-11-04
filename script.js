@@ -64,6 +64,7 @@ function setupDialog(dialogId, openSelector, closeSelector) {
 setupDialog('livro-sinopse-dialog', '[data-open-synopsis]', '[data-close-synopsis]');
 setupDialog('mulher-ensinavel-sinopse-dialog', '[data-open-mulher-synopsis]', '[data-close-mulher-synopsis]');
 setupDialog('mulher-ensinavel-pedido-dialog', '[data-open-order]', '[data-close-order]');
+setupDialog('uiclap-cadastro-dialog', '[data-open-uiclap]', '[data-close-uiclap]');
 
 window.addEventListener('resize', () => {
   activeDialogs.forEach((dialog) => fitDialogToSite(dialog));
@@ -213,4 +214,70 @@ if (orderDialog) {
     originalShowModal();
     initializeOrderTurnstile();
   };
+}
+
+// Cadastro de interesse UICLAP: desativado em producao ate publicacao do endpoint no Worker.
+const UICLAP_INTENT_ENDPOINT = 'https://claudiana-orders-api.madsoncabral59.workers.dev/api/store/uiclap-intents';
+const UICLAP_STORE_URL = 'https://loja.uiclap.com/titulo/ua219240';
+const uiclapForm = document.getElementById('uiclap-cadastro-form');
+let uiclapTurnstileId = null;
+let uiclapSubmitting = false;
+const uiclapDialog = document.getElementById('uiclap-cadastro-dialog');
+if (uiclapDialog) {
+  const originalUiclapShow = uiclapDialog.showModal.bind(uiclapDialog);
+  uiclapDialog.showModal = function () {
+    originalUiclapShow();
+    ensureTurnstileScript().then(turnstile => {
+      if (uiclapTurnstileId === null) {
+        uiclapTurnstileId = turnstile.render('#uiclap-turnstile', {sitekey: TURNSTILE_SITE_KEY, theme: 'light'});
+      } else turnstile.reset(uiclapTurnstileId);
+    }).catch(() => {
+      const status = document.getElementById('uiclap-feedback');
+      status.hidden = false;
+      status.textContent = 'Não foi possível carregar a verificação. Atualize a página e tente novamente.';
+    });
+  };
+}
+if (uiclapForm) {
+  const feedback = document.getElementById('uiclap-feedback');
+  const button = uiclapForm.querySelector('button[type="submit"]');
+  const idempotencyKey = () => window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : null;
+  let pendingKey = idempotencyKey();
+  uiclapForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (uiclapSubmitting) return;
+    const form = new FormData(uiclapForm);
+    const field = name => String(form.get(name) || '').trim();
+    const phone = field('telefone').replace(/\D/g, '');
+    const quantity = Number(field('quantidade'));
+    const token = window.turnstile && uiclapTurnstileId !== null ? window.turnstile.getResponse(uiclapTurnstileId) : '';
+    const show = message => { feedback.hidden = false; feedback.textContent = message; };
+    if (!token) return show('Conclua a verificação de segurança antes de continuar.');
+    if (!/^[0-9]{10,15}$/.test(phone) || !Number.isInteger(quantity) || quantity < 1 || quantity > 10) return show('Confira o WhatsApp e a quantidade informada.');
+    if (!pendingKey) return show('Não foi possível preparar seu cadastro. Atualize a página e tente novamente.');
+    uiclapSubmitting = true;
+    button.disabled = true;
+    button.textContent = 'Registrando...';
+    try {
+      const response = await fetch(UICLAP_INTENT_ENDPOINT, {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({name:field('nome'),phone,email:field('email'),quantity,consent:form.has('consentimento'),turnstileToken:token,idempotencyKey:pendingKey})
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.id || result.storeUrl !== UICLAP_STORE_URL) {
+        show('Não foi possível registrar o cadastro. Nenhuma compra foi confirmada. Tente novamente ou fale com a equipe.');
+        return;
+      }
+      pendingKey = idempotencyKey();
+      show('Cadastro registrado. Abrindo a loja oficial da UICLAP...');
+      window.location.assign(UICLAP_STORE_URL);
+    } catch {
+      show('Não foi possível confirmar o registro. Antes de tentar novamente, fale com a equipe para evitar duplicidade.');
+    } finally {
+      uiclapSubmitting = false;
+      button.disabled = false;
+      button.textContent = 'Cadastrar e ir para a UICLAP';
+      if (window.turnstile && uiclapTurnstileId !== null) window.turnstile.reset(uiclapTurnstileId);
+    }
+  });
 }

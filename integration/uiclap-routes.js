@@ -63,13 +63,9 @@ export async function updateUiclapStatus(request,query,actor) {
   const tracking=normalize(body.trackingCode), carrier=normalize(body.carrier);
   if (!validUuid(id)||!Object.hasOwn(transitions,next)||reference.length>120||
     tracking.length>120||carrier.length>100||!actor)return json({error:'invalid_data'},400);
-  // Transição atômica condicionada ao status anterior e registrada em histórico.
-  const before=await query(`SELECT status FROM ${table} WHERE id=$1::uuid`,[id]);
-  if (!before.rows.length) return json({error:'not_found'},404);
-  const current=before.rows[0].status;
-  if (!(transitions[current]||[]).includes(next))return json({error:'invalid_transition'},409);
-  if (next==='PAYMENT_CONFIRMED'&&!reference) return json({error:'uiclap_reference_required'},400);
-  const result=await query(`UPDATE ${table}
+  // A atualizacao e a auditoria ocorrem em uma unica instrucao SQL.
+  const result=await query(`WITH changed AS (
+    UPDATE ${table}
     SET status=$2, updated_at=now(),
     uiclap_order_ref=CASE WHEN $3<>'' THEN $3 ELSE uiclap_order_ref END,
     tracking_code=CASE WHEN $4<>'' THEN $4 ELSE tracking_code END,
@@ -78,10 +74,12 @@ export async function updateUiclapStatus(request,query,actor) {
     shipped_at=CASE WHEN $2='SHIPPED' THEN now() ELSE shipped_at END,
     delivered_at=CASE WHEN $2='DELIVERED' THEN now() ELSE delivered_at END,
     verified_by=$6
-    WHERE id=$1::uuid AND status=$7 RETURNING id,status`,
-    [id,next,reference,tracking,carrier,actor,current]);
+    WHERE id=$1::uuid AND status=$7 RETURNING id,status
+  ), audit AS (
+    INSERT INTO claudiana.uiclap_intent_events(intent_id,event_type,actor,details)
+    SELECT id,$2,$6,$8::jsonb FROM changed RETURNING id
+  ) SELECT changed.id,changed.status FROM changed JOIN audit USING(id)`,
+    [id,next,reference,tracking,carrier,actor,current,JSON.stringify({previous:current,reference:reference||undefined})]);
   if (!result.rows.length)return json({error:'conflict_retry'},409);
-  await query(`INSERT INTO claudiana.uiclap_intent_events (intent_id,event_type,actor,details)
-    VALUES ($1::uuid,$2,$3,$4::jsonb)`,[id,next,actor,JSON.stringify({previous:current,reference:reference||undefined})]);
   return json({intent:result.rows[0]});
 }

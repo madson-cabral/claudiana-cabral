@@ -276,7 +276,7 @@ if (uiclapForm) {
     } finally {
       uiclapSubmitting = false;
       button.disabled = false;
-      button.textContent = 'Cadastrar e ir para a UICLAP';
+      button.textContent = 'Continuar para pagamento seguro';
       if (window.turnstile && uiclapTurnstileId !== null) window.turnstile.reset(uiclapTurnstileId);
     }
   });

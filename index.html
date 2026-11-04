@@ -103,12 +103,11 @@
       <div class="order-dialog-inner">
         <div class="book-synopsis-top"><span class="portrait-kicker">Pedido do livro</span><button type="button" class="book-synopsis-close" data-close-order aria-label="Fechar formulário de pedido">×</button></div>
         <h2 id="mulher-ensinavel-pedido-title">Compre aqui <em>— Mulher Ensinável</em></h2>
-        <p id="mulher-ensinavel-pedido-intro" class="order-dialog-intro">Livro <strong>Mulher Ensinável</strong>: <strong>R$ 50,00 por exemplar</strong>, com <strong>frete grátis</strong>. Após preencher o formulário, o botão abrirá o pedido no WhatsApp em outra aba e levará você ao pagamento seguro pelo Asaas. <strong>Confirme o envio da mensagem no WhatsApp.</strong> O link de R$ 50,00 paga apenas 1 exemplar; para quantidades maiores, solicite a cobrança pelo WhatsApp.</p>
+        <p id="mulher-ensinavel-pedido-intro" class="order-dialog-intro">Livro <strong>Mulher Ensinável</strong>: <strong>R$ 50,00 por exemplar</strong>, com <strong>frete grátis</strong>. Escolha de 1 a 10 exemplares, informe os dados de entrega e continue para o <strong>pagamento seguro pelo Asaas</strong>. A confirmação do pagamento será registrada automaticamente no painel.</p>
         <form class="order-form" id="mulher-ensinavel-order-form">
           <h3 class="order-form-heading">Dados da compradora</h3>
           <label><span>Nome completo *</span><input type="text" name="nome" autocomplete="name" required maxlength="120" placeholder="Nome completo para o comprovante" /></label>
           <div class="order-form-grid">
-            <label><span>CPF (comprovante de compra) *</span><input type="text" name="cpf" inputmode="numeric" autocomplete="off" required maxlength="14" placeholder="000.000.000-00" aria-describedby="cpf-help" /><small id="cpf-help">Utilizado para identificação no comprovante.</small></label>
             <label><span>WhatsApp *</span><input type="tel" name="telefone" autocomplete="tel" required maxlength="20" placeholder="(63) 99999-9999" /></label>
           </div>
           <label><span>E-mail (opcional)</span><input type="email" name="email" autocomplete="email" maxlength="150" placeholder="voce@email.com" /></label>
@@ -125,15 +124,15 @@
             <label><span>Complemento (opcional)</span><input type="text" name="complemento" autocomplete="address-line2" maxlength="120" placeholder="Casa, apto, bloco..." /></label>
           </div>
           <div class="order-form-grid">
-            <label><span>Quantidade *</span><input type="number" name="quantidade" min="1" max="100" value="1" required /></label>
+            <label><span>Quantidade *</span><input type="number" name="quantidade" min="1" max="10" value="1" required /></label>
             <label><span>Destinatário, se diferente (opcional)</span><input type="text" name="destinatario" maxlength="120" placeholder="Nome de quem recebe" /></label>
           </div>
           <label><span>Referência de entrega (opcional)</span><input type="text" name="referencia" maxlength="160" placeholder="Próximo a..." /></label>
-          <label><span>Observações (opcional)</span><textarea name="observacoes" maxlength="500" rows="3" placeholder="Observações para o pedido"></textarea></label>
-          <p class="order-privacy-notice">Seus dados, inclusive CPF e endereço, serão incluídos na mensagem preparada para o WhatsApp da Claudiana. Confira os dados antes de enviar. O pedido não é enviado automaticamente: você confirma o envio no WhatsApp.</p>
-          <label class="order-consent"><input type="checkbox" name="consentimento" required /><span>Concordo em compartilhar meus dados de compra e entrega, incluindo CPF, com Claudiana Cabral pelo WhatsApp para atendimento deste pedido. *</span></label>
-          <p class="order-form-required">* Campos obrigatórios. O WhatsApp exige sua confirmação para enviar os dados. Para 1 exemplar, o checkout será aberto em seguida; para mais de 1, solicite um link com o total correto.</p>
-          <div class="order-form-actions"><button type="button" class="book-synopsis-bottom-close order-cancel" data-close-order>Cancelar</button><button type="submit" class="order-submit">Enviar dados do pedido e fazer pagamento</button></div><p id="order-flow-feedback" role="status" aria-live="polite" hidden style="font:500 12px/1.6 'DM Sans',Arial,sans-serif;color:#684c3d"></p><a id="order-whatsapp-fallback" hidden target="_blank" rel="noopener noreferrer" style="padding:12px 18px;border:1px solid #926f59;border-radius:999px;color:#493125;font:600 12px 'DM Sans',Arial,sans-serif;text-decoration:none">Abrir pedido no WhatsApp ↗</a>
+          
+          <p class="order-privacy-notice">Seus dados de contato e endereço serão enviados de forma segura ao sistema de pedidos da Claudiana, exclusivamente para processar sua compra e entrega. Os dados necessários ao pagamento serão coletados pelo Asaas.</p>
+          <label class="order-consent"><input type="checkbox" name="consentimento" required /><span>Concordo com o uso dos meus dados para processar este pedido e realizar a entrega. *</span></label>
+          <p class="order-form-required">* Campos obrigatórios. O valor final é calculado pelo servidor: R$ 50,00 por exemplar e frete grátis. O pagamento será realizado na página segura do Asaas.</p>
+          <div id="order-turnstile" style="margin:16px 0;min-height:65px" aria-label="Verificação de segurança"></div><div class="order-form-actions"><button type="button" class="book-synopsis-bottom-close order-cancel" data-close-order>Cancelar</button><button type="submit" class="order-submit">Continuar para pagamento seguro</button></div><p id="order-flow-feedback" role="status" aria-live="polite" hidden style="font:500 12px/1.6 'DM Sans',Arial,sans-serif;color:#684c3d"></p>
         </form>
       </div>
     </dialog>
